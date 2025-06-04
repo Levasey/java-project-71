@@ -1,13 +1,8 @@
 package hexlet.code;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import picocli.CommandLine;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Map;
 
 @CommandLine.Command(
         name = "gendiff",
@@ -45,20 +40,10 @@ public class App implements Runnable {
     @Override
     public void run() {
         try {
-            Map<String, Object> data1 = getData(filepath1);
-            Map<String, Object> data2 = getData(filepath2);
-            System.out.println("File data: " + data1);
-            System.out.println("File data: " + data2);
+            String diff = Differ.generate(filepath1, filepath2);
+            System.out.println(diff);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    private Map<String, Object> getData(String filepath) throws IOException {
-        String data = new String(Files.readAllBytes(Paths.get(filepath)));
-
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(data, new TypeReference<Map<String, Object>>() {
-        });
     }
 }

@@ -38,3 +38,5 @@ make lint
 ```bash
 make update
 ```
+
+[![asciicast](https://asciinema.org/a/721920.svg)](https://asciinema.org/a/721920)
