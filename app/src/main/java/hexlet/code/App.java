@@ -1,6 +1,13 @@
 package hexlet.code;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import picocli.CommandLine;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Map;
 
 @CommandLine.Command(
         name = "gendiff",
@@ -37,7 +44,21 @@ public class App implements Runnable {
 
     @Override
     public void run() {
-        System.out.printf("Comparing files:%n- %s%n- %s%n", filepath1, filepath2);
-        System.out.printf("Using format: %s%n", format);
+        try {
+            Map<String, Object> data1 = getData(filepath1);
+            Map<String, Object> data2 = getData(filepath2);
+            System.out.println("File data: " + data1);
+            System.out.println("File data: " + data2);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private Map<String, Object> getData(String filepath) throws IOException {
+        String data = new String(Files.readAllBytes(Paths.get(filepath)));
+
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(data, new TypeReference<Map<String, Object>>() {
+        });
     }
 }
