@@ -6,8 +6,8 @@ plugins {
     id("com.github.ben-manes.versions") version "0.52.0"
     id("application")
     id("org.sonarqube") version "6.2.0.5505"
-    id("jacoco")
-    id("checkstyle")
+    jacoco
+    checkstyle
 }
 
 group = "hexlet.code"

@@ -30,16 +30,21 @@ public class Differ {
         allKeys.addAll(data1.keySet());
         allKeys.addAll(data2.keySet());
 
-        return allKeys.stream().map(key -> {
+        StringBuilder result = new StringBuilder("{\n");
+
+        for (String key : allKeys) {
             if (!data2.containsKey(key)) {
-                return " - " + key + ": " + data1.get(key);
+                result.append("  - ").append(key).append(": ").append(data1.get(key)).append("\n");
             } else if (!data1.containsKey(key)) {
-                return " + " + key + ": " + data2.get(key);
+                result.append("  + ").append(key).append(": ").append(data2.get(key)).append("\n");
             } else if (data1.get(key).equals(data2.get(key))) {
-                return "   " + key + ": " + data1.get(key);
+                result.append("    ").append(key).append(": ").append(data1.get(key)).append("\n");
             } else {
-                return " - " + key + ": " + data1.get(key) + "\n + " + key + ": " + data2.get(key);
+                result.append("  - ").append(key).append(": ").append(data1.get(key)).append("\n");
+                result.append("  + ").append(key).append(": ").append(data2.get(key)).append("\n");
             }
-        }).collect(Collectors.joining("\n", "{\n", "\n}"));
+        }
+
+        return result.append("}").toString();
     }
 }
