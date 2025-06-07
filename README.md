@@ -1,5 +1,6 @@
 ### Hexlet tests and linter status:
-[![Actions Status](https://github.com/Levasey/java-project-71/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Levasey/java-project-71/actions)
+[![SonarQube](https://github.com/Levasey/java-project-71/actions/workflows/build.yml/badge.svg)](https://github.com/Levasey/java-project-71/actions/workflows/build.yml)
+[![Java CI with Gradle](https://github.com/Levasey/java-project-71/actions/workflows/gradle.yml/badge.svg)](https://github.com/Levasey/java-project-71/actions/workflows/gradle.yml)
 [![hexlet-check](https://github.com/Levasey/java-project-71/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Levasey/java-project-71/actions/workflows/hexlet-check.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Levasey_java-project-71&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Levasey_java-project-71)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Levasey_java-project-71&metric=bugs)](https://sonarcloud.io/summary/new_code?id=Levasey_java-project-71)
