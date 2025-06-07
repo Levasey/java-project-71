@@ -8,7 +8,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Map;
 import java.util.TreeSet;
-import java.util.stream.Collectors;
 
 public class Differ {
     public static String generate(String filepath1, String filepath2) throws IOException {
