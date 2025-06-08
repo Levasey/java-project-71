@@ -10,15 +10,15 @@ plugins {
     checkstyle
 }
 
-//java {
-//    toolchain {
-//        languageVersion.set(JavaLanguageVersion.of(17))
-//    }
-//}
-//
-//tasks.withType<JavaCompile>().configureEach {
-//    options.compilerArgs.add("--enable-preview")
-//}
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
+tasks.withType<JavaCompile>().configureEach {
+    options.compilerArgs.add("--enable-preview")
+}
 
 group = "hexlet.code"
 version = "1.0-SNAPSHOT"
