@@ -9,40 +9,4 @@
 
 A project template with only the bare minimum of structure. A good starting point for a small project.
 
-## Start
-
-```bash
-make
-```
-
-## Setup
-
-```bash
-make ./gradlew build sonar --info
-```
-
-## Run
-
-```bash
-make run
-```
-
-## Run tests
-
-```bash
-make test
-```
-
-## Run checkstyle
-
-```bash
-make lint
-```
-
-## Check update dependencies and plugins
-
-```bash
-make update
-```
-
 [![asciicast](https://asciinema.org/a/721920.svg)](https://asciinema.org/a/721920)
