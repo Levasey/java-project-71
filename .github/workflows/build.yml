@@ -30,7 +30,7 @@ jobs:
           fetch-depth: 0
 
       - name: Execute Gradle build
-        run: ./gradlew build
+        run: /home/user/IdeaProjects/java-project-61/java-project-71/app/gradlew build
 
       - name: Generate coverage report
         run: make report
