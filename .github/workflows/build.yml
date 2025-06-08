@@ -30,13 +30,7 @@ jobs:
           fetch-depth: 0
 
       - name: Execute Gradle build
-        run: |
-          if [ -f "gradlew" ]; then
-            ./gradlew build
-          elif [ -f "app/gradlew" ]; then
-            cd app
-            ./gradlew build
-          fi
+        run: ./gradlew build
 
       - name: Generate coverage report
         run: make report
