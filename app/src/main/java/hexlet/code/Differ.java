@@ -21,7 +21,8 @@ public class Differ {
         Path path = Paths.get(filepath).toAbsolutePath().normalize();
         String content = Files.readString(path);
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(content, new TypeReference<>() {});
+        return mapper.readValue(content, new TypeReference<>() {
+        });
     }
 
     private static String buildDiff(Map<String, Object> data1, Map<String, Object> data2) {
@@ -43,7 +44,6 @@ public class Differ {
                 result.append("  + ").append(key).append(": ").append(data2.get(key)).append("\n");
             }
         }
-
         return result.append("}").toString();
     }
 }
