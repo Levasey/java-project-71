@@ -15,17 +15,22 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      # Переходим в поддиректорию app
-      - name: Navigate to app directory
-        run: cd app
+      # Добавьте настройку рабочей директории
+      - name: Prepare workspace
+        run: |
+          echo "GRADLE_DIR=app" >> $GITHUB_ENV
+          cd $GRADLE_DIR
+          chmod +x gradlew
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
+          working-directory: ${{ env.GRADLE_DIR }}
           fetch-depth: 0
 
       - name: Execute Gradle build
         run: ./gradlew build
+        working-directory: ${{ env.GRADLE_DIR }}
 
       - name: Generate coverage report
         run: make report
@@ -48,3 +53,4 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: ./gradlew sonar --info
+        working-directory: ${{ env.GRADLE_DIR }}
