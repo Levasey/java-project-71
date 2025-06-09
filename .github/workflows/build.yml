@@ -38,4 +38,5 @@ jobs:
         working-directory: app
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: https://sonarcloud.io
         run: ./gradlew sonar --info
