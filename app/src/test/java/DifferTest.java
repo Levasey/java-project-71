@@ -1,5 +1,9 @@
 import hexlet.code.Differ;
 import org.junit.jupiter.api.Test;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DifferTest {
@@ -15,9 +19,11 @@ public class DifferTest {
 
     @Test
     public void testGenerate() throws Exception {
-        String file1 = "/home/user/IdeaProjects/java-project-61/java-project-71/app/src/test/resources/data1";
-        String file2 = "/home/user/IdeaProjects/java-project-61/java-project-71/app/src/test/resources/data2";
-        String actual = Differ.generate(file1, file2);
+        // Get the path relative to the project root
+        Path file1 = Paths.get("src", "test", "resources", "data1").toAbsolutePath();
+        Path file2 = Paths.get("src", "test", "resources", "data2").toAbsolutePath();
+
+        String actual = Differ.generate(file1.toString(), file2.toString());
         assertEquals(expected.trim(), actual.trim());
     }
 }
