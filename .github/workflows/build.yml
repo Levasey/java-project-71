@@ -23,6 +23,7 @@ jobs:
           build-root-directory: app
 
       - name: Generate coverage report
+        working-directory: app
         run: make report
 
       - name: Cache SonarQube packages
