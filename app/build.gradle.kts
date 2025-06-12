@@ -4,10 +4,14 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 plugins {
     id("java")
     id("com.github.ben-manes.versions") version "0.52.0"
-    id("application")
     id("org.sonarqube") version "6.2.0.5505"
+    application
     jacoco
     checkstyle
+}
+
+application {
+    mainClass = "hexlet.code.App"
 }
 
 java {
@@ -32,8 +36,10 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
     implementation("info.picocli:picocli:4.7.7")
     annotationProcessor("info.picocli:picocli-codegen:4.7.7")
+
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
     implementation("com.fasterxml.jackson.core:jackson-databind:2.19.0")
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.14.0-rc1")
 }
 
 tasks.test {
@@ -43,10 +49,6 @@ tasks.test {
         events = setOf(TestLogEvent.FAILED, TestLogEvent.PASSED, TestLogEvent.SKIPPED)
         showStandardStreams = true
     }
-}
-
-application {
-    mainClass = "hexlet.code.App"
 }
 
 sonar {

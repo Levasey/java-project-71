@@ -1,49 +1,54 @@
 package hexlet.code;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import hexlet.code.formatters.FormatFactory;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Map;
-import java.util.TreeSet;
+import java.util.TreeMap;
 
 public class Differ {
-    public static String generate(String filepath1, String filepath2) throws IOException {
-        Map<String, Object> data1 = getData(filepath1);
-        Map<String, Object> data2 = getData(filepath2);
-        return buildDiff(data1, data2);
+    public static String generate(String filePath1, String filePath2, String format) throws Exception {
+        Map<String, Object> data1 = Utils.load(filePath1);
+        Map<String, Object> data2 = Utils.load(filePath2);
+        Map<String, DifferItem> diff = buildDiff(data1, data2);
+        return FormatFactory.format(diff, format);
     }
 
-    private static Map<String, Object> getData(String filepath) throws IOException {
-        Path path = Paths.get(filepath).toAbsolutePath().normalize();
-        String content = Files.readString(path);
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(content, new TypeReference<>() {
-        });
+    public static String generate(String filePath1, String filePath2) throws Exception {
+        return generate(filePath1, filePath2, "stylish");
     }
 
-    private static String buildDiff(Map<String, Object> data1, Map<String, Object> data2) {
-        TreeSet<String> allKeys = new TreeSet<>();
-        allKeys.addAll(data1.keySet());
-        allKeys.addAll(data2.keySet());
+    private static Map<String, DifferItem>  buildDiff(Map<String, Object> data1, Map<String, Object> data2) {
+        Map<String, DifferItem> diff = new TreeMap<>();
 
-        StringBuilder result = new StringBuilder("{\n");
-
-        for (String key : allKeys) {
-            if (!data2.containsKey(key)) {
-                result.append("  - ").append(key).append(": ").append(data1.get(key)).append("\n");
-            } else if (!data1.containsKey(key)) {
-                result.append("  + ").append(key).append(": ").append(data2.get(key)).append("\n");
-            } else if (data1.get(key).equals(data2.get(key))) {
-                result.append("    ").append(key).append(": ").append(data1.get(key)).append("\n");
+        data1.forEach((key, value1) -> {
+            if (data2.containsKey(key)) {
+                Object value2 = data2.get(key);
+                if (isEqual(value1, value2)) {
+                    diff.put(key, new DifferItem(value1, value2, "unchanged"));
+                } else {
+                    diff.put(key, new DifferItem(value1, value2, "updated"));
+                }
             } else {
-                result.append("  - ").append(key).append(": ").append(data1.get(key)).append("\n");
-                result.append("  + ").append(key).append(": ").append(data2.get(key)).append("\n");
+                diff.put(key, new DifferItem(value1, null, "removed"));
             }
+        });
+
+        data2.forEach((key, value2) -> {
+            if (!data1.containsKey(key)) {
+                diff.put(key, new DifferItem(null, value2, "added"));
+            }
+        });
+
+        return diff;
+    }
+
+    private static boolean isEqual(Object value1, Object value2) {
+        if (value1 == null && value2 == null) {
+            return true;
         }
-        return result.append("}").toString();
+        if (value1 == null || value2 == null) {
+            return false;
+        }
+        return value1.equals(value2);
     }
 }
