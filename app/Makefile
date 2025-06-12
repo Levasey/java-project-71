@@ -13,7 +13,7 @@ install:
 	./gradlew clean install
 
 run-dist:
-	./build/install/java-package/bin/java-package
+	./gradlew installDist
 
 run:
 	./gradlew run

@@ -1,33 +1,29 @@
 package hexlet.code;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import hexlet.code.parser.Parser;
+import hexlet.code.parser.ParserFactory;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Map;
 import java.util.TreeSet;
 
 public class Differ {
     public static String generate(String filepath1, String filepath2) throws IOException {
-        Map<String, Object> data1 = getData(filepath1);
-        Map<String, Object> data2 = getData(filepath2);
+        byte[] content1 = Files.readAllBytes(Path.of(filepath1));
+        byte[] content2 = Files.readAllBytes(Path.of(filepath2));
+
+        Parser parser1 = ParserFactory.getParser(filepath1);
+        Parser parser2 = ParserFactory.getParser(filepath2);
+
+        Map<String, Object> data1 = parser1.parse(content1);
+        Map<String, Object> data2 = parser2.parse(content2);
         return buildDiff(data1, data2);
     }
 
-    private static Map<String, Object> getData(String filepath) throws IOException {
-        Path path = Paths.get(filepath).toAbsolutePath().normalize();
-        String content = Files.readString(path);
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(content, new TypeReference<>() {
-        });
-    }
-
     private static String buildDiff(Map<String, Object> data1, Map<String, Object> data2) {
-        TreeSet<String> allKeys = new TreeSet<>();
-        allKeys.addAll(data1.keySet());
+        TreeSet<String> allKeys = new TreeSet<>(data1.keySet());
         allKeys.addAll(data2.keySet());
 
         StringBuilder result = new StringBuilder("{\n");
