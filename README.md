@@ -28,3 +28,6 @@ gendiff -f json file1.json file2.json
 
 ### Пример сравнения Yaml-файлов:
 [![asciicast](https://asciinema.org/a/bgIcXql7FnmWniFnCXwbcyBag.svg)](https://asciinema.org/a/bgIcXql7FnmWniFnCXwbcyBag)
+
+### Пример сравнения вложенных структур:
+![img.png](img.png)
