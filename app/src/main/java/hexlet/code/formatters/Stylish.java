@@ -4,7 +4,7 @@ import hexlet.code.DifferItem;
 
 import java.util.Map;
 
-public class Stylish implements Formatter{
+public class Stylish implements Formatter {
 
     public String format(Map<String, DifferItem> diff) {
         StringBuilder result = new StringBuilder("{\n");

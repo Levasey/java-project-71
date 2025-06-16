@@ -2,8 +2,6 @@ package hexlet.code;
 
 import picocli.CommandLine;
 
-import java.io.IOException;
-
 @CommandLine.Command(
         name = "gendiff",
         description = "Compares two configuration files and shows a difference.",
