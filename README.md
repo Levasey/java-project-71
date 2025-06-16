@@ -31,3 +31,6 @@ gendiff -f json file1.json file2.json
 
 ### Пример сравнения вложенных структур:
 ![img.png](img.png)
+
+### Пример сравнения вложенных структур в формате plain:
+![img_1.png](img_1.png)
