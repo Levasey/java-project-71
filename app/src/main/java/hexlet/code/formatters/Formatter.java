@@ -5,5 +5,5 @@ import hexlet.code.DifferItem;
 import java.util.Map;
 
 public interface Formatter {
-    String format(Map<String, DifferItem> diff);
+    String format(Map<String, DifferItem> diff) throws Exception;
 }

@@ -10,27 +10,70 @@
 
 Консольная утилита `gendiff`, сравнивающая содержимое двух текстовых файлов (информацию об обмене данными). Поддерживаются два формата сравниваемых файлов: `Json` и `Yaml`.
 
-# Справка
-gendiff -h
-gendiff --help
+## Возможности
 
-# Версия
-gendiff -V
-gendiff --version
+- Поддержка форматов файлов: JSON и YAML
+- Три формата вывода различий:
+    - `stylish` (по умолчанию) - древовидный формат с цветовым выделением
+    - `plain` - текстовый список изменений
+    - `json` - различия в формате JSON
+- Рекурсивное сравнение вложенных структур
+- Четкая индикация изменений (добавлено/удалено/изменено)
 
-# Сравнение файлов
-gendiff file1.json file2.json
-gendiff --format=plain file1.yml file2.yml
-gendiff -f json file1.json file2.json
+## Установка
 
-### Пример вывода справки:
+1. Клонируйте репозиторий:
+```bash
+git clone https://github.com/Levasey/java-project-71.git
+cd app
+```
+
+2. Соберите проект:
+```bash
+./gradlew build
+```
+
+3. Установите:
+```bash
+./gradlew installDist
+```
+
+## Использование
+
+```bash
+./app/build/install/java-project-71-app/bin/java-project-71-app [ОПЦИИ] <путь_к_файлу1> <путь_к_файлу2>
+```
+
+### Доступные опции:
+- `-f, --format` - формат вывода (`stylish`, `plain`, `json`) [по умолчанию: `stylish`]
+- `-h, --help` - показать справку
+- `-V, --version` - показать версию
+
+## Примеры работы
+
+### Вывод справки:
+```bash
+./app/build/install/java-project-71-app/bin/java-project-71-app -h
+```
 [![asciicast](https://asciinema.org/a/721920.svg)](https://asciinema.org/a/721920)
 
-### Пример сравнения Yaml-файлов:
+### Сравнения Yaml-файлов:
 [![asciicast](https://asciinema.org/a/bgIcXql7FnmWniFnCXwbcyBag.svg)](https://asciinema.org/a/bgIcXql7FnmWniFnCXwbcyBag)
 
-### Пример сравнения вложенных структур:
-![img.png](img.png)
+### Сравнения вложенных структур:
+```bash
+./app/build/install/java-project-71-app/bin/java-project-71-app /home/user/IdeaProjects/java-project-61/java-project-71/app/src/test/resources/file1.json /home/user/IdeaProjects/java-project-61/java-project-71/app/src/test/resources/file2.json
+```
+[![asciicast](https://asciinema.org/a/Tna9FYmKif19Ktfsa2F51s9CJ.svg)](https://asciinema.org/a/Tna9FYmKif19Ktfsa2F51s9CJ)
 
-### Пример сравнения вложенных структур в формате plain:
-![img_1.png](img_1.png)
+### Сравнения вложенных структур в формате plain:
+```bash
+./app/build/install/java-project-71-app/bin/java-project-71-app -f plain /home/user/IdeaProjects/java-project-61/java-project-71/app/src/test/resources/file1.json /home/user/IdeaProjects/java-project-61/java-project-71/app/src/test/resources/file2.json
+```
+[![asciicast](https://asciinema.org/a/OelGNVnRUKpwhbneEGOBAkwDX.svg)](https://asciinema.org/a/OelGNVnRUKpwhbneEGOBAkwDX)
+
+### Сравнения вложенных структур в формате json:
+```bash
+./app/build/install/java-project-71-app/bin/java-project-71-app -f json /home/user/IdeaProjects/java-project-61/java-project-71/app/src/test/resources/file1.json /home/user/IdeaProjects/java-project-61/java-project-71/app/src/test/resources/file2.json
+```
+[![asciicast](https://asciinema.org/a/r4alFm2cZnhtAv0TUy1w39dDn.svg)](https://asciinema.org/a/r4alFm2cZnhtAv0TUy1w39dDn)
