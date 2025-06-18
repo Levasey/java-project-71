@@ -12,18 +12,25 @@ class DifferTest {
 
     private static String expectedStylish;
     private static String expectedPlain;
+    private static String expectedJson;
+
+    private static final String jsonFile1 = "src/test/resources/file1.json";
+    private static final String jsonFile2 = "src/test/resources/file2.json";
+    private static final String yamlFile1 = "src/test/resources/file1.yaml";
+    private static final String yamlFile2 = "src/test/resources/file2.yaml";
 
     @BeforeAll
     public static void beforeAll() throws Exception {
         expectedStylish = Files.readString(Paths.get("src/test/resources/expected_stylish.txt"));
         expectedPlain = Files.readString(Paths.get("src/test/resources/expected_plain.txt"));
+        expectedJson = Files.readString(Paths.get("src/test/resources/expected_json.txt"));
     }
 
     @Test
     void testStylishJson() throws Exception {
         // Get the path relative to the project root
-        Path file1 = Paths.get("src", "test", "resources", "file1.json").toAbsolutePath();
-        Path file2 = Paths.get("src", "test", "resources", "file2.json").toAbsolutePath();
+        Path file1 = Paths.get(jsonFile1).toAbsolutePath();
+        Path file2 = Paths.get(jsonFile2).toAbsolutePath();
 
         String actual = Differ.generate(file1.toString(), file2.toString());
         assertEquals(expectedStylish.trim(), actual.trim());
@@ -32,8 +39,8 @@ class DifferTest {
     @Test
     void testStylishYml() throws Exception {
         // Get the path relative to the project root
-        Path file1 = Paths.get("src", "test", "resources", "file1.yaml").toAbsolutePath();
-        Path file2 = Paths.get("src", "test", "resources", "file2.yaml").toAbsolutePath();
+        Path file1 = Paths.get(yamlFile1).toAbsolutePath();
+        Path file2 = Paths.get(yamlFile2).toAbsolutePath();
 
         String actual = Differ.generate(file1.toString(), file2.toString());
         assertEquals(expectedStylish.trim(), actual.trim());
@@ -42,8 +49,8 @@ class DifferTest {
     @Test
     void testPlainJson() throws Exception {
         // Get the path relative to the project root
-        Path file1 = Paths.get("src", "test", "resources", "file1.json").toAbsolutePath();
-        Path file2 = Paths.get("src", "test", "resources", "file2.json").toAbsolutePath();
+        Path file1 = Paths.get(jsonFile1).toAbsolutePath();
+        Path file2 = Paths.get(jsonFile2).toAbsolutePath();
 
         String actual = Differ.generate(file1.toString(), file2.toString(), "plain");
         assertEquals(expectedPlain.trim(), actual.trim());
@@ -52,10 +59,30 @@ class DifferTest {
     @Test
     void testPlainYml() throws Exception {
         // Get the path relative to the project root
-        Path file1 = Paths.get("src", "test", "resources", "file1.yaml").toAbsolutePath();
-        Path file2 = Paths.get("src", "test", "resources", "file2.yaml").toAbsolutePath();
+        Path file1 = Paths.get(yamlFile1).toAbsolutePath();
+        Path file2 = Paths.get(yamlFile2).toAbsolutePath();
 
         String actual = Differ.generate(file1.toString(), file2.toString(), "plain");
         assertEquals(expectedPlain.trim(), actual.trim());
+    }
+
+    @Test
+    void testJsonToJson() throws Exception {
+        // Get the path relative to the project root
+        Path file1 = Paths.get(jsonFile1).toAbsolutePath();
+        Path file2 = Paths.get(jsonFile2).toAbsolutePath();
+
+        String actual = Differ.generate(file1.toString(), file2.toString(), "json");
+        assertEquals(expectedJson.trim(), actual.trim());
+    }
+
+    @Test
+    void testYamlToJson() throws Exception {
+        // Get the path relative to the project root
+        Path file1 = Paths.get(yamlFile1).toAbsolutePath();
+        Path file2 = Paths.get(yamlFile2).toAbsolutePath();
+
+        String actual = Differ.generate(file1.toString(), file2.toString(), "json");
+        assertEquals(expectedJson.trim(), actual.trim());
     }
 }
