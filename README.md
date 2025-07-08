@@ -41,7 +41,7 @@ cd app
 ## Использование
 
 ```bash
-./app/build/install/java-project-71-app/bin/java-project-71-app [ОПЦИИ] <путь_к_файлу1> <путь_к_файлу2>
+./app/build/install/app/bin/app [ОПЦИИ] <путь_к_файлу1> <путь_к_файлу2>
 ```
 
 ### Доступные опции:
@@ -53,7 +53,7 @@ cd app
 
 ### Вывод справки:
 ```bash
-./app/build/install/java-project-71-app/bin/java-project-71-app -h
+./app/build/installapp/bin/pp -h
 ```
 [![asciicast](https://asciinema.org/a/721920.svg)](https://asciinema.org/a/721920)
 
@@ -62,18 +62,18 @@ cd app
 
 ### Сравнения вложенных структур:
 ```bash
-./app/build/install/java-project-71-app/bin/java-project-71-app /home/user/IdeaProjects/java-project-61/java-project-71/app/src/test/resources/file1.json /home/user/IdeaProjects/java-project-61/java-project-71/app/src/test/resources/file2.json
+./app/build/install/app/bin/app /home/user/IdeaProjects/java-project-61/java-project-71/app/src/test/resources/file1.json /home/user/IdeaProjects/java-project-61/java-project-71/app/src/test/resources/file2.json
 ```
 [![asciicast](https://asciinema.org/a/Tna9FYmKif19Ktfsa2F51s9CJ.svg)](https://asciinema.org/a/Tna9FYmKif19Ktfsa2F51s9CJ)
 
 ### Сравнения вложенных структур в формате plain:
 ```bash
-./app/build/install/java-project-71-app/bin/java-project-71-app -f plain /home/user/IdeaProjects/java-project-61/java-project-71/app/src/test/resources/file1.json /home/user/IdeaProjects/java-project-61/java-project-71/app/src/test/resources/file2.json
+./app/build/install/app/bin/app -f plain /home/user/IdeaProjects/java-project-61/java-project-71/app/src/test/resources/file1.json /home/user/IdeaProjects/java-project-61/java-project-71/app/src/test/resources/file2.json
 ```
 [![asciicast](https://asciinema.org/a/OelGNVnRUKpwhbneEGOBAkwDX.svg)](https://asciinema.org/a/OelGNVnRUKpwhbneEGOBAkwDX)
 
 ### Сравнения вложенных структур в формате json:
 ```bash
-./app/build/install/java-project-71-app/bin/java-project-71-app -f json /home/user/IdeaProjects/java-project-61/java-project-71/app/src/test/resources/file1.json /home/user/IdeaProjects/java-project-61/java-project-71/app/src/test/resources/file2.json
+./app/build/install/app/bin/app -f json /home/user/IdeaProjects/java-project-61/java-project-71/app/src/test/resources/file1.json /home/user/IdeaProjects/java-project-61/java-project-71/app/src/test/resources/file2.json
 ```
 [![asciicast](https://asciinema.org/a/r4alFm2cZnhtAv0TUy1w39dDn.svg)](https://asciinema.org/a/r4alFm2cZnhtAv0TUy1w39dDn)
