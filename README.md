@@ -53,7 +53,7 @@ cd app
 
 ### Вывод справки:
 ```bash
-./app/build/installapp/bin/pp -h
+./app/build/install/app/bin/app -h
 ```
 [![asciicast](https://asciinema.org/a/721920.svg)](https://asciinema.org/a/721920)
 
