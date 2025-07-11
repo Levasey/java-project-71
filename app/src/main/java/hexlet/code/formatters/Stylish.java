@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class Stylish implements Formatter {
 
-    public String format(Map<String, DifferItem> diff) {
+    public final String format(Map<String, DifferItem> diff) {
         StringBuilder result = new StringBuilder("{\n");
 
         diff.forEach((key, item) -> {

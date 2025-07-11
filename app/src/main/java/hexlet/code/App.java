@@ -37,12 +37,7 @@ public class App implements Runnable {
     }
 
     @Override
-    /**
-     * Executes the comparison of two files and prints the difference.
-     * When extending this class, ensure to handle exceptions appropriately
-     * and maintain the expected behavior of printing the diff result.
-     */
-    public void run() {
+    public final void run() {
         try {
             String diff = Differ.generate(filepath1, filepath2, format);
             System.out.println(diff);

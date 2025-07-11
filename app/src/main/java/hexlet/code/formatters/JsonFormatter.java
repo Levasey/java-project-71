@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class JsonFormatter implements Formatter  {
     @Override
-    public String format(Map<String, DifferItem> diff) throws Exception {
+    public final String format(Map<String, DifferItem> diff) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(diff);
     }

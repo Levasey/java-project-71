@@ -1,6 +1,11 @@
 package hexlet.code;
 
-public class DifferItem {
+/**
+ * Represents a difference item with old and new values and their status.
+ * This class is designed for extension. When overriding methods, ensure to
+ * maintain the same contract of returning the respective values.
+ */
+public final class DifferItem {
     private final Object oldValue;
     private final Object newValue;
     private final String status;
